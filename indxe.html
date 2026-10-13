@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ar" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>𝙋𝙧𝙞𝙫𝙖𝙩𝙚 𝙒𝙚𝙗𝙨𝙞𝙩𝙚 𝙋𝙧𝙤𝙟𝙚𝙘𝙩</title>
+     <link rel="icon" href="assets/svg/favicon.svg">
+    <!-- ربط ملف الـ CSS الخارجي -->
+    <link rel="stylesheet" href="style.css">
+    <!-- خطوط وأيقونات -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- خلفية الجسيمات المتحركة -->
+    <canvas id="bgCanvas"></canvas>
+
+    <!-- مشغل الموسيقى العائم -->
+    <div class="music-widget">
+        <audio id="bgMusic" loop>
+            <source src="assets/musice.mp3" type="audio/mpeg">
+        </audio>
+        <button id="musicToggle" class="music-btn" title="تشغيل/إيقاف الموسيقى">
+            <i class="fa-solid fa-music"></i>
+            <span class="equalizer">
+                <span></span><span></span><span></span>
+            </span>
+        </button>
+    </div>
+
+    <!-- المحتوى الرئيسي للموقع -->
+    <div class="container">
+        <header class="hero">
+            <div class="avatar-container">
+                <div class="glow-ring"></div>
+                <img src="assets/svg/fight club (1).svg" alt="Ouail Alia" class="avatar">
+            </div>
+            
+            <h1 class="title">𝗢𝘂𝗮𝗶𝗹 𝗔𝗹𝗶𝗮</h1>
+            <p class="subtitle"><span class="typed-text">Web & Mobile Developer</span><span class="cursor">&nbsp;</span></p>
+            
+            <div class="social-links">
+                
+<a href="https://tiktok.com/@ou4il_8k"
+   target="_blank"
+   class="social-btn"
+   title="TikTok">
+  <i class="fa-brands fa-tiktok"></i>
+</a>
+
+                
+<a href="https://instagram.com/ou4il_8k?exln=YnpieWpoMzQyNDBo"
+   target="_blank"
+   class="social-btn"
+   title="Instagram"
+   aria-label="Instagram">
+  <i class="fa-brands fa-instagram"></i>
+</a>
+
+                <a href="https://discord.gg/9djB8ZN5" target="_blank" class="social-btn" title="Discord"><i class="fa-brands fa-discord"></i></a>
+                <a href="http://t.me/ou4il_8k" target="_blank" class="social-btn" title="Telegram"><i class="fa-brands fa-telegram"></i></a>
+            </div>
+        </header>
+
+        <section class="section">
+            <h2><i class="fa-solid fa-code"></i> Skills & Stack</h2>
+            <div class="skills-grid">
+                <div class="skill-card"><i class="fa-brands fa-html5"></i> HTML</div>
+                <div class="skill-card"><i class="fa-brands fa-css3-alt"></i> CSS</div>
+                <div class="skill-card">
+  <i class="fa-solid fa-code"></i> Programmer
+</div>
+                <div class="skill-card">
+  <i class="fa-solid fa-pen-ruler"></i> Designer
+</div>
+                <div class="skill-card"><i class="fa-solid fa-mobile-screen"></i> Mobile Dev</div>
+                <div class="skill-card">
+  <i class="fa-solid fa-desktop"></i> Desktop Dev
+</div>
+
+
+                
+            </div>
+        </section>
+
+        <section class="section">
+            <h2><i class="fa-solid fa-laptop-code"></i> Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-info">
+                        <h3>Portfolio v1</h3>
+                        <p>صفحة شخصية بتصميم عصري وداكن مع أنيميشن سلس.</p>
+                        <a href="#" class="project-link">عرض المشروع <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-info">
+                        <h3>Mobile UI Concept</h3>
+                        <p>تصميم واجهات وتطبيقات بتقنيات حديثة.</p>
+                        <a href="#" class="project-link">عرض المشروع <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>© 2026 Ouail Alia. Made with <i class="fa-solid fa-heart" style="color: #ff3366;"></i> & Passion.</p>
+        </footer>
+    </div><!-- سكربت الأنيميشن والخلفية وتفاعل الموسيقى -->
+    <script>
+        // تأثير الخلفية المتحركة (Canvas)
+        const canvas = document.getElementById('bgCanvas');
+        const ctx = canvas.getContext('2d');
+        let particlesArray = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 1;
+                this.speedX = (Math.random() - 0.5) * 0.8;
+                this.speedY = (Math.random() - 0.5) * 0.8;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x > canvas.width) this.x = 0;
+                if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0;
+                if (this.y < 0) this.y = canvas.height;
+            }
+            draw() {
+                ctx.fillStyle = 'rgba(0, 242, 254, 0.5)';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particlesArray = [];
+            let count = (canvas.width * canvas.height) / 15000;
+            for (let i = 0; i < count; i++) {
+                particlesArray.push(new Particle());
+            }
+        }
+        initParticles();
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particlesArray.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+
+        // تحكم الموسيقى والـ Equalizer
+        const musicBtn = document.getElementById('musicToggle');
+        const bgMusic = document.getElementById('bgMusic');
+        let isPlaying = false;
+
+        musicBtn.addEventListener('click', () => {
+            if (!isPlaying) {
+                bgMusic.play().then(() => {
+                    isPlaying = true;
+                    musicBtn.classList.add('playing');
+                }).catch(e => console.log("Audio play blocked:", e));
+            } else {
+                bgMusic.pause();
+                isPlaying = false;
+                musicBtn.classList.remove('playing');
+            }
+        });
+    </script>
+</body>
+</html>
